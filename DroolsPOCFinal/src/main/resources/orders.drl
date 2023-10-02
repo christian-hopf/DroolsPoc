@@ -1,0 +1,26 @@
+import org.example.Order;
+
+rule "Visa discount"
+    when
+        order: Order(cardType == "Visa")
+    then
+        System.out.println("Visa card detected. You are receiving a 10% discount on your order!");
+        System.out.println("Your price was " + order.getPrice() + ", your price is now " + (order.getPrice() * 0.9));
+        order.setDiscount(0.1);
+    end
+rule "MasterCard discount"
+    when
+        order: Order(cardType == "MasterCard")
+    then
+        System.out.println("MasterCard card detected. You are receiving a 20% discount on your order!");
+        System.out.println("Your price was " + order.getPrice() + ", your price is now " + (order.getPrice() * 0.8));
+        order.setDiscount(0.2);
+    end
+rule "Discover discount"
+    when
+        order: Order(cardType == "Discover")
+    then
+        System.out.println("Discover card detected. You are receiving a 30% discount on your order!");
+        System.out.println("Your price was " + order.getPrice() + ", your price is now " + (order.getPrice() * 0.7));
+        order.setDiscount(0.3);
+    end
